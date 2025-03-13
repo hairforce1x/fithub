@@ -1,5 +1,5 @@
-const express = require('express')
-const Workout = require('../models')
+import express from "express"
+import Workout from "../config/models.js"
 const router = express.Router()
 
 router.post('/workouts', async (req, res) => {
@@ -24,3 +24,4 @@ router.post('/workouts', async (req, res) => {
 })
 
 
+export default router
