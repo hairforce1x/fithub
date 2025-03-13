@@ -46,7 +46,7 @@ router.get('/workouts/name/:name', async (req, res) => {
 router.get('/workouts/id/:id', async (req, res) => {
     try {
         const workoutId = req.params.id;
-        console.log ('workout id:',workoutId)
+
         const workout = await Workout.findById(workoutId);
 
         if (!workout) {
@@ -57,6 +57,25 @@ router.get('/workouts/id/:id', async (req, res) => {
     } catch (err) {
         console.error('Error fetching workout', err);
         res.status(500).json({ error: 'Something went wrong fetching.' })
+    }
+})
+
+// Delete by ID
+
+router.delete('/workouts/id/:id', async (req, res) => {
+    try {
+        const workoutId = req.params.id;
+
+        const deletedWorkout = await Workout.findByIdAndDelete(workoutId)
+
+        if (!deletedWorkout) {
+            return res.status(404).json({ error: 'Workout not found'})
+        }
+
+        res.status(200).json('Workout deleted')
+    } catch (err) {
+        console.error('Error deleting workout:', err)
+        res.status(500).json({ error: 'Something went wrong deleting.' })
     }
 })
 
