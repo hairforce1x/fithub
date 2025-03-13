@@ -2,6 +2,8 @@ import express from "express"
 import Workout from "../config/models.js"
 const router = express.Router()
 
+// Add new workout
+
 router.post('/workouts', async (req, res) => {
     try {
         const { name, exercises } = req.body;
@@ -10,15 +12,6 @@ router.post('/workouts', async (req, res) => {
             name,
             exercises
         })
-
-        // const newWorkout = new Workout({
-        //     name: 'Workout A',
-        //     exercises: [
-        //         { name: 'Barbell Rows', sets: 3, reps: 5 },
-        //         { name: 'Bench Press', sets: 3, reps: 5 },
-        //         { name: 'Squats', sets: 3, reps: 5 }
-        //     ]
-        // })
 
         const savedWorkout = await newWorkout.save();
 
@@ -30,11 +23,31 @@ router.post('/workouts', async (req, res) => {
 
 })
 
+// Get workout by name
+
 router.get('/workouts/name/:name', async (req, res) => {
     try {
         const workoutName = req.params.name;
-        console.log(workoutName)
         const workout = await Workout.findOne({ name: workoutName});
+
+        if (!workout) {
+            return res.status(404).json({ error: 'Workout not found' })
+        }
+
+        res.status(200).json(workout);
+    } catch (err) {
+        console.error('Error fetching workout', err);
+        res.status(500).json({ error: 'Something went wrong fetching.' })
+    }
+})
+
+// Get workout by ID
+
+router.get('/workouts/id/:id', async (req, res) => {
+    try {
+        const workoutId = req.params.id;
+        console.log ('workout id:',workoutId)
+        const workout = await Workout.findById(workoutId);
 
         if (!workout) {
             return res.status(404).json({ error: 'Workout not found' })
