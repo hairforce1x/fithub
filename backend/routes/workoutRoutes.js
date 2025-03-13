@@ -23,23 +23,34 @@ router.post('/workouts', async (req, res) => {
 
 })
 
-// Get workout by name
+// Get all workouts
 
-router.get('/workouts/name/:name', async (req, res) => {
+router.get('/workouts', async (req, res) => {
     try {
-        const workoutName = req.params.name;
-        const workout = await Workout.findOne({ name: workoutName });
-
-        if (!workout) {
-            return res.status(404).json({ error: 'Workout not found' })
-        }
-
-        res.status(200).json(workout);
+        const workouts = await Workout.find();
+        res.status(200).json(workouts);
     } catch (err) {
-        console.error('Error fetching workout', err);
-        res.status(500).json({ error: 'Something went wrong fetching.' })
+        res.status(500).json({ error: 'Could not retrieve workouts' })
     }
 })
+
+// Get workout by name - Not sure how useful this is in practice I just wanted to test it out
+
+// router.get('/workouts/name/:name', async (req, res) => {
+//     try {
+//         const workoutName = req.params.name;
+//         const workout = await Workout.findOne({ name: workoutName });
+
+//         if (!workout) {
+//             return res.status(404).json({ error: 'Workout not found' })
+//         }
+
+//         res.status(200).json(workout);
+//     } catch (err) {
+//         console.error('Error fetching workout', err);
+//         res.status(500).json({ error: 'Something went wrong fetching.' })
+//     }
+// })
 
 // Get workout by ID
 
