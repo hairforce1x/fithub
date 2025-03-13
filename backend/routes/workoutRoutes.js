@@ -28,7 +28,7 @@ router.post('/workouts', async (req, res) => {
 router.get('/workouts/name/:name', async (req, res) => {
     try {
         const workoutName = req.params.name;
-        const workout = await Workout.findOne({ name: workoutName});
+        const workout = await Workout.findOne({ name: workoutName });
 
         if (!workout) {
             return res.status(404).json({ error: 'Workout not found' })
@@ -60,6 +60,26 @@ router.get('/workouts/id/:id', async (req, res) => {
     }
 })
 
+// Update by ID
+
+router.put('/workouts/id/:id', async (req, res) => {
+    try {
+        const workoutId = req.params.id;
+        const updateData = {...req.body, date: new Date()};
+
+        const updatedWorkout = await Workout.findByIdAndUpdate(workoutId, updateData, { new: true });
+
+        if (!updatedWorkout) {
+            return res.status(404).json({error: 'Workout not found'})
+        }
+
+        res.status(200).json({message: 'Workout update successful', workout: updatedWorkout})
+    } catch (err) {
+        console.error('Update Error:', err)
+        res.status(500).json({ error: 'Could not update'})
+    }
+})
+
 // Delete by ID
 
 router.delete('/workouts/id/:id', async (req, res) => {
@@ -69,7 +89,7 @@ router.delete('/workouts/id/:id', async (req, res) => {
         const deletedWorkout = await Workout.findByIdAndDelete(workoutId)
 
         if (!deletedWorkout) {
-            return res.status(404).json({ error: 'Workout not found'})
+            return res.status(404).json({ error: 'Workout not found' })
         }
 
         res.status(200).json('Workout deleted')
