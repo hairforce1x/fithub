@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
 
-function EditWorkout(workout) {    
+function EditWorkout() {    
   
-    return <div>{workout}</div>;
+    return <div>hello world</div>;
   }
   
 
