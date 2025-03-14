@@ -1,5 +1,6 @@
 import EditWorkout from "../EditWorkout";
 import { Link } from "react-router-dom";
+import Test from "./Test";
 
 function WorkoutList({ workouts }) {
     console.log(workouts)
@@ -18,6 +19,7 @@ function WorkoutList({ workouts }) {
                 ))
             )}
         </div>
+        
     )
 }
 
