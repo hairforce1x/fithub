@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
 
-function EditWorkout() {
-    const location = useLocation();
-    const { customProp } = location.state || { customProp: 'Default value' };
+function EditWorkout(workout) {    
   
-    return <div>{customProp}</div>;
+    return <div>{workout}</div>;
   }
   
 
