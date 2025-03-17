@@ -2,7 +2,7 @@ import EditWorkout from "./EditWorkout";
 import { Link } from "react-router-dom";
 // import Test from "./Test";
 
-function WorkoutList({ workouts }) {
+function WorkoutList({ workouts }) { // Went down a rabbit hole on destructuring
     return (
         <div>
             <h2>Workouts</h2>
@@ -18,7 +18,6 @@ function WorkoutList({ workouts }) {
                 ))
             )}
         </div>
-        
     )
 }
 

@@ -8,7 +8,7 @@ import WorkoutList from './components/WorkoutList'
 
 function App() {
   const [workouts, setWorkouts] = useState([])
-  const [loading, setLoading] = useState(true)
+  
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -20,9 +20,7 @@ function App() {
         setWorkouts(data);
       } catch (err) {
         console.error('Error fetching workouts:', err)
-      } finally {
-        setLoading(false)
-      }
+      } 
     }
     fetchWorkouts()
   }, [])

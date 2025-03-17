@@ -22,7 +22,7 @@ function EditWorkout() {
   const handleInputChange = (exerciseIndex, field, value) => {
     setWorkout((prevWorkout) => {
       const updatedExercises = prevWorkout.exercises.map((exercise, index) =>
-        index === exerciseIndex ? { ...exercise, [field]: value } : exercise // shoutout bracket notation
+        index === exerciseIndex ? { ...exercise, [field]: value } : exercise // shoutout bracket notation. Tried this with if statements first
       )
       return { ...prevWorkout, exercises: updatedExercises }
     })
@@ -45,7 +45,7 @@ function EditWorkout() {
       const updatedWorkout = await response.json();
       console.log('body object: ', JSON.stringify(updatedExercises))
 
-      alert("Workout updated")
+      alert("Workout updated") // This isn't working right. 
     } catch (err) {
       console.error('Update failed: ', err)
     }
@@ -62,7 +62,7 @@ function EditWorkout() {
     <>
       <h2>{workout.name}</h2>
       <ul>
-        {workout.exercises.map((exercise, exerciseIndex) => (
+        {workout.exercises.map((exercise, exerciseIndex) => ( // changed index to exerciseIndex for clarity in handleInputChange function.
           <li key={exerciseIndex}>
             <h4>{exercise.name}</h4>
             <label>
