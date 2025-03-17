@@ -1,9 +1,8 @@
-import EditWorkout from "../EditWorkout";
+import EditWorkout from "./EditWorkout";
 import { Link } from "react-router-dom";
-import Test from "./Test";
+// import Test from "./Test";
 
 function WorkoutList({ workouts }) {
-    console.log(workouts)
     return (
         <div>
             <h2>Workouts</h2>
@@ -24,11 +23,3 @@ function WorkoutList({ workouts }) {
 }
 
 export default WorkoutList;
-
-{/* <ul>
-                            {workout.exercises.map((exercise, index) => (
-                                <li key={index}>
-                                    <h4>{exercise.name}</h4>
-                                </li>
-                            ))}
-                        </ul> */}

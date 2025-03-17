@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import './App.css'
-import EditWorkout from './EditWorkout'
+import EditWorkout from './components/EditWorkout'
 import WorkoutList from './components/WorkoutList'
 
 
