@@ -1,15 +1,15 @@
 
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 function EditWorkout() {
-  const [workout, setWorkout] = useState(null);
+  const [workout, setWorkout] = useState(null)
   let params = useParams()
   useEffect(() => {
     const fetchWorkout = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`);
-        const data = await response.json();
+        const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`)
+        const data = await response.json()
         console.log(data)
         setWorkout(data)
       } catch (err) {
@@ -24,14 +24,37 @@ function EditWorkout() {
       const updatedExercises = prevWorkout.exercises.map((exercise, index) =>
         index === exerciseIndex ? { ...exercise, [field]: value } : exercise // shoutout bracket notation
       )
-      console.log('updated state: ', updatedExercises)
       return { ...prevWorkout, exercises: updatedExercises }
     })
   }
 
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(workout)
+      })
+      if (!response.ok) {
+        throw new Error('Update failed');
+      }
+
+      const updatedWorkout = await response.json();
+      console.log('body object: ', JSON.stringify(workout))
+      console.log('updated workout from server', updatedWorkout)
+
+      alert("Workout updated")
+    } catch (err) {
+      console.error('Update failed: ', err)
+    }
+  }
+
+  // Learned that I need this because initial state is null. Originally initialized with an object.
   if (!workout) {
     return (
-      <div>Loading...</div> // Learned that I need this because initial state is null. I can initialize with an object but I think that will make my code less scalable
+      <div>Loading...</div>
     )
   }
 
@@ -69,8 +92,9 @@ function EditWorkout() {
           </li>
         ))}
       </ul>
+      <button onClick={handleUpdate}>Update</button>
     </>
-  );
+  )
 }
 
 export default EditWorkout;
