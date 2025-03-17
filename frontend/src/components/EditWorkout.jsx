@@ -30,20 +30,20 @@ function EditWorkout() {
 
   const handleUpdate = async () => {
     try {
+      const updatedExercises = workout.exercises
       const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(workout)
+        body: JSON.stringify({exercises: updatedExercises})
       })
       if (!response.ok) {
         throw new Error('Update failed');
       }
 
       const updatedWorkout = await response.json();
-      console.log('body object: ', JSON.stringify(workout))
-      console.log('updated workout from server', updatedWorkout)
+      console.log('body object: ', JSON.stringify(updatedExercises))
 
       alert("Workout updated")
     } catch (err) {
