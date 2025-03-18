@@ -13,16 +13,32 @@ function NewWorkout() {
         notes: ""
     });
 
-    // handleInputChanges(() = > {
+    const handleWorkoutChange = ((e) => {
+        setWorkout({ ...workout, [e.target.name]: e.target.value })
+    })
 
-    // })
+    const handleExerciseChange = ((e) => {
+        setExercise({ ...exercise, [e.target.name]: e.target.value })
+    })
+
+    const handleSubmit = (e) => {
+
+    }
 
     return (
         <>
-            Hello World!
+            <form onSubmit={handleSubmit}>
+                <h2>Add new workout</h2>
+                <label>Workout Name:</label>
+                <input type='text' name='name' placeholder='Ex: Shoulder Day' value={workout.name} onChange={handleWorkoutChange} required /><br />
+                <label>Exercise Name:</label>
+                <input type='text' name='name' placeholder='Ex: Shoulder Day' value={workout.name} onChange={handleExerciseChange} required />
+
+                <button onClick={handleWorkoutChange}>Add Exercise</button>
+            </form>
         </>
-        
-     );
+
+    );
 }
 
 export default NewWorkout;
