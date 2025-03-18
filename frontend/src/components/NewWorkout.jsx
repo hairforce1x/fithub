@@ -36,12 +36,32 @@ function NewWorkout() {
 
     useEffect(() => {
         console.log(workout);
-        console.log(exercise)
-    }, [workout, exercise]);
+    }, [workout]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log('submit pressed')
+        try {
+            const response = await fetch('http://localhost:8080/api/workouts/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(workout)
+            })
 
-    }
+            if (!response.ok) {
+              throw new Error('Submit failed');
+            }
+      
+            const newWorkout = await response.json();
+            console.log('Workout submitted: ', JSON.stringify(newWorkout))
+      
+            alert("Workout submitted") // This isn't working right. 
+          } catch (err) {
+            console.error('Submit failed: ', err)
+          }
+        }
 
     return (
         <>
@@ -60,8 +80,15 @@ function NewWorkout() {
                 <input type='number' name='weight' placeholder='Ex: 69' value={exercise.weight} onChange={handleExerciseChange} required /><br />
                 <button onClick={addExercise}>Add Exercise</button>
             </form>
-            {/* {workout.name}
-            {workout.exercises} */}
+            <h2>{workout.name}</h2>
+            <h3>Exercises:</h3>
+            <ul>
+                {workout.exercises.map((ex, index) => (
+                    <li key={index}>{ex.name} - {ex.sets} sets x {ex.reps} reps @ {ex.weight} lbs</li>
+                ))
+                }
+            </ul>
+            <button onClick={handleSubmit}>Submit Workout</button>
         </>
 
     );
