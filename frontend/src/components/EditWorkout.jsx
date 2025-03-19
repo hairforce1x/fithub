@@ -81,7 +81,7 @@ function EditWorkout() {
   }
 
   return (
-    <>
+    <form>
       <label>Select routine:</label>
       <select value={selectedRoutine} onChange={(e) => setSelectedRoutine(e.target.value)} required>
         <option value="">Select Routine</option>
@@ -124,7 +124,7 @@ function EditWorkout() {
         ))}
       </ul>
       <button onClick={handleUpdate}>Update</button>
-    </>
+    </form>
   )
 }
 

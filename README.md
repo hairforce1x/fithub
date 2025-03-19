@@ -115,7 +115,7 @@ CP 325.9:
  ## (12%) Core JavaScript
  
  - [x] Demonstrate proper usage of ES6 syntax and tools.
- - [ ] Use functions and classes to adhere to the DRY principle.
+ - [x] Use functions and classes to adhere to the DRY principle.
  - [x] Use Promises and async/await, where appropriate.
  - [x] Use Axios or fetch to retrieve data from an API.
  - [x] Use sound programming logic throughout the application.
@@ -141,7 +141,7 @@ CP 325.9:
  
  - [x] Use React to create the application’s front-end. **(10%)**
  - [ ] Use CSS to style the application. **(5%)**
- - [ ] Create at least four different views or pages for the application. **(5%)**
+ - [x] Create at least four different views or pages for the application. **(5%)**
  - [x] Create some form of navigation that is included across the application’s pages, utilizing React Router for page rendering. **(5%)**
  - [x] Use React Hooks or Redux for application state management. **(5%)**
  - [x] Interface directly with the server and API that you created. **(5%)**
