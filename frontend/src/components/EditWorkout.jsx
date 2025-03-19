@@ -10,7 +10,6 @@ function EditWorkout() {
       try {
         const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`)
         const data = await response.json()
-        console.log(data)
         setWorkout(data)
       } catch (err) {
         console.error('Error fetching workout:', err)

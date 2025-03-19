@@ -18,7 +18,7 @@ const workoutSchema = new Schema({
 
 const routineSchema = new Schema({
     name: { type: String, required: true },
-    workouts: [workoutSchema]
+    workouts: [{ type: Schema.Types.ObjectId, ref: 'Workout' }]
 })
 
 export const Workout = mongoose.model('Workout', workoutSchema)

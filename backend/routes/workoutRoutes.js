@@ -22,7 +22,7 @@ router.post('/routines', async (req, res) => {
 // Add new workout
 
 router.post('/workouts', async (req, res) => {
-    const { name, exercises } = req.body;
+    const { name, exercises, routine } = req.body;
     
     try {
         const newWorkout = new Workout({

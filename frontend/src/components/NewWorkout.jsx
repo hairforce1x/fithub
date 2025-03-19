@@ -4,7 +4,7 @@ function NewWorkout() {
     const [workout, setWorkout] = useState({
         name: '',
         exercises: [],
-        routine: '67db02fdc358f313da7ff31a'
+        routine: null
     });
     const [exercise, setExercise] = useState({
         name: '',
@@ -13,11 +13,25 @@ function NewWorkout() {
         weight: 0,
         notes: ''
     });
+    const [routines, setRoutines] = useState([]);
+    const [selectedRoutine, setSelectedRoutine] = useState('')
 
-    const [toggle, setToggle] = useState(false)
-    const handleToggleChange = ((e) => {
-        setToggle(!toggle)
-    })
+    useEffect(() => {
+        const fetchRoutines = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/routines');  // Adjust endpoint as needed
+                const data = await response.json();
+                setRoutines(data);
+            } catch (err) {
+                console.error('Error fetching routines:', err);
+            }
+        };
+        fetchRoutines();
+    }, []);
+
+    useEffect(() => {
+        console.log(routines)
+    }, [routines])
 
     const handleWorkoutChange = ((e) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value })
@@ -31,7 +45,7 @@ function NewWorkout() {
     const addExercise = (e) => {
         console.log('adding exercise: ', exercise)
         setWorkout({
-            ...workout, exercises: [...workout.exercises, exercise]
+            ...workout, exercises: [...workout.exercises, exercise],
         })
         setExercise({
             name: "",
@@ -43,41 +57,52 @@ function NewWorkout() {
     }
 
     // Learned useEffect is good for debugging
-    // useEffect(() => {
-    //     console.log(workout);
-    // }, [workout]);
+    useEffect(() => {
+        console.log(workout);
+    }, [workout]);
 
     const handleSubmit = async (e) => {
         e.preventDefault() // spent longer than I would care to admit figuring out that I needed preventDefault here. Rookie mistake.
         console.log('submit pressed')
+        const workoutWithRoutine = {
+            ...workout, routine: selectedRoutine,
+        }
         try {
             const response = await fetch('http://localhost:8080/api/workouts/', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(workout)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(workoutWithRoutine)
             })
 
             if (!response.ok) {
-              throw new Error('Submit failed');
+                throw new Error('Submit failed');
             }
-      
+
             const newWorkout = await response.json();
             console.log('Workout submitted: ', JSON.stringify(newWorkout))
-      
+
             alert("Workout submitted") // This isn't working right. 
 
-          } catch (err) {
+        } catch (err) {
             console.error('Submit failed: ', err)
-          }
         }
+    }
 
     return (
         <>
             <form onSubmit={handleSubmit}>
                 <h2>Add new workout</h2>
-
+                <label>Select routine:</label>
+                <select value={selectedRoutine} onChange={(e) => setSelectedRoutine(e.target.value)} required>
+                    <option value="">Select Routine</option>
+                    {routines.map((routine) => (
+                        <option key={routine._id} value={routine._id}>
+                            {routine.name}
+                        </option>
+                    ))}
+                </select><br />
                 <label>Workout Name:</label>
                 <input type='text' name='name' placeholder='Ex: Shoulder Day' value={workout.name} onChange={handleWorkoutChange} required /><br />
                 <label>Exercise Name:</label>
