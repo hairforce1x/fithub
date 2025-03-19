@@ -1,6 +1,5 @@
-import EditWorkout from "./EditWorkout";
 import { Link } from "react-router-dom";
-// import Test from "./Test";
+
 
 function WorkoutList({ workouts }) { // Went down a rabbit hole on destructuring
     return (

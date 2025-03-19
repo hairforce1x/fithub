@@ -2,15 +2,34 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 
+
+
 function EditWorkout() {
   const [workout, setWorkout] = useState(null)
   let params = useParams()
+  const [routines, setRoutines] = useState([])
+  const [selectedRoutine, setSelectedRoutine] = useState('')
+
+  useEffect(() => {
+    const fetchRoutines = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/routines');
+        const data = await response.json();
+        setRoutines(data);
+      } catch (err) {
+        console.error('Error fetching routines:', err);
+      }
+    };
+    fetchRoutines();
+  }, []);
+  
   useEffect(() => {
     const fetchWorkout = async () => {
       try {
         const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`)
         const data = await response.json()
         setWorkout(data)
+        setSelectedRoutine(data.routine ? data.routine._id : '')
       } catch (err) {
         console.error('Error fetching workout:', err)
       }
@@ -29,20 +48,24 @@ function EditWorkout() {
 
   const handleUpdate = async () => {
     try {
-      const updatedExercises = workout.exercises
+      const updatedWorkout = {
+        ...workout,
+        exercises: workout.exercises,
+        routine: selectedRoutine
+      }
       const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({exercises: updatedExercises})
+        body: JSON.stringify(updatedWorkout)
       })
       if (!response.ok) {
         throw new Error('Update failed');
       }
 
-      const updatedWorkout = await response.json();
-      console.log('body object: ', JSON.stringify(updatedExercises))
+      // const updatedWorkout = await response.json();
+      console.log('body object: ', JSON.stringify(updatedWorkout))
 
       alert("Workout updated") // This isn't working right. 
     } catch (err) {
@@ -59,6 +82,15 @@ function EditWorkout() {
 
   return (
     <>
+      <label>Select routine:</label>
+      <select value={selectedRoutine} onChange={(e) => setSelectedRoutine(e.target.value)} required>
+        <option value="">Select Routine</option>
+        {routines.map((routine) => (
+          <option key={routine._id} value={routine._id}>
+            {routine.name}
+          </option>
+        ))}
+      </select><br />
       <h2>{workout.name}</h2>
       <ul>
         {workout.exercises.map((exercise, exerciseIndex) => ( // changed index to exerciseIndex for clarity in handleInputChange function.
