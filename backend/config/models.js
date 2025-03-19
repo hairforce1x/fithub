@@ -12,7 +12,13 @@ const exerciseSchema = new Schema ({
 const workoutSchema = new Schema({
     name: { type: String, required: true },
     exercises: [exerciseSchema],
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    routine: { type: Schema.Types.ObjectId, ref: 'Routine' }
+})
+
+const routineSchema = new Schema({
+    name: { type: String, required: true },
+    workouts: [workoutSchema]
 })
 
 const Workout = mongoose.model('Workout', workoutSchema)

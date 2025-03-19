@@ -14,9 +14,7 @@ function App() {
     const fetchWorkouts = async () => {
       try {
         const response = await fetch("http://localhost:8080/api/workouts/");
-
         const data = await response.json();
-        console.log(data)
         setWorkouts(data);
       } catch (err) {
         console.error('Error fetching workouts:', err)

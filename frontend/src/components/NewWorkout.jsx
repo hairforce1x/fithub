@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 
 function NewWorkout() {
     const [workout, setWorkout] = useState({
-        name: "test",
+        name: "",
         exercises: [],
     });
     const [exercise, setExercise] = useState({
-        name: "test ex",
-        sets: 5,
-        reps: 5,
-        weight: 69,
+        name: "",
+        sets: 0,
+        reps: 0,
+        weight: 0,
         notes: ""
     });
 
@@ -26,20 +26,21 @@ function NewWorkout() {
         setExercise({ ...exercise, [e.target.name]: e.target.value })
     })
 
+    // today I learned preventDefault not required because of type='button'
     const addExercise = (e) => {
-        e.preventDefault();
         console.log('adding exercise: ', exercise)
         setWorkout({
             ...workout, exercises: [...workout.exercises, exercise]
         })
     }
 
-    useEffect(() => {
-        console.log(workout);
-    }, [workout]);
+    // Learned useEffect is good for debugging
+    // useEffect(() => {
+    //     console.log(workout);
+    // }, [workout]);
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault() // spent longer than I would care to admit figuring out that I needed preventDefault here. Rookie mistake.
         console.log('submit pressed')
         try {
             const response = await fetch('http://localhost:8080/api/workouts/', {
@@ -78,7 +79,7 @@ function NewWorkout() {
                 <input type='number' name='reps' placeholder='Ex: 8' value={exercise.reps} onChange={handleExerciseChange} required /><br />
                 <label>Weight:</label>
                 <input type='number' name='weight' placeholder='Ex: 69' value={exercise.weight} onChange={handleExerciseChange} required /><br />
-                <button onClick={addExercise}>Add Exercise</button>
+                <button type="button" onClick={addExercise}>Add Exercise</button>
             </form>
             <h2>{workout.name}</h2>
             <h3>Exercises:</h3>

@@ -2,6 +2,15 @@ import express from "express"
 import Workout from "../config/models.js"
 const router = express.Router()
 
+// Add new routine
+router.post('/routines', async (req, res) => {
+    try {
+        
+    } catch(err) {
+        console.error(err)
+    }
+})
+
 // Add new workout
 
 router.post('/workouts', async (req, res) => {
