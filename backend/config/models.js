@@ -21,5 +21,5 @@ const routineSchema = new Schema({
     workouts: [workoutSchema]
 })
 
-const Workout = mongoose.model('Workout', workoutSchema)
-export default Workout
+export const Workout = mongoose.model('Workout', workoutSchema)
+export const Routine = mongoose.model('Routine', routineSchema)

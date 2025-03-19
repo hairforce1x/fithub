@@ -1,25 +1,34 @@
 import express from "express"
-import Workout from "../config/models.js"
+import { Workout } from "../config/models.js"
+import { Routine } from "../config/models.js"
 const router = express.Router()
 
 // Add new routine
 router.post('/routines', async (req, res) => {
+    const { name } = req.body;
+
     try {
-        
+        const newRoutine = new Routine({
+            name
+        })
+        const savedRoutine = await newRoutine.save()
+        res.status(201).json(savedRoutine)
     } catch(err) {
-        console.error(err)
+        console.error('Error creating routine: ', err)
+        res.status(500).json({ error: 'Something went wrong posting.' })
     }
 })
 
 // Add new workout
 
 router.post('/workouts', async (req, res) => {
+    const { name, exercises } = req.body;
+    
     try {
-        const { name, exercises } = req.body;
-
         const newWorkout = new Workout({
             name,
-            exercises
+            exercises,
+            routine
         })
 
         const savedWorkout = await newWorkout.save();
@@ -30,6 +39,17 @@ router.post('/workouts', async (req, res) => {
         res.status(500).json({ error: 'Something went wrong posting.' })
     }
 
+})
+// Get all routines
+
+router.get('/routines', async (req, res)=>{
+    try {
+        const routines = await Routine.find();
+        console.log('Routines:', routines)
+        res.status(200).json(routines);
+    } catch (err) {
+        res.status(500).json({ error: 'Could not retrieve routines' })
+    }
 })
 
 // Get all workouts
@@ -60,6 +80,25 @@ router.get('/workouts', async (req, res) => {
 //         res.status(500).json({ error: 'Something went wrong fetching.' })
 //     }
 // })
+
+// Get routine by ID
+
+router.get('/routines/id/:id', async (req, res) => {
+    try {
+        const routineId = req.params.id;
+
+        const routine = await Routine.findById(routineId);
+
+        if (!routine) {
+            return res.status(404).json({ error: 'Routine not found' })
+        }
+
+        res.status(200).json(routine);
+    } catch (err) {
+        console.error('Error fetching workout', err);
+        res.status(500).json({ error: 'Something went wrong fetching.' })
+    }
+})
 
 // Get workout by ID
 

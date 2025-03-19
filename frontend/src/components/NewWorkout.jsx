@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 
 function NewWorkout() {
     const [workout, setWorkout] = useState({
-        name: "",
+        name: '',
         exercises: [],
+        routine: '67db02fdc358f313da7ff31a'
     });
     const [exercise, setExercise] = useState({
-        name: "",
+        name: '',
         sets: 0,
         reps: 0,
         weight: 0,
-        notes: ""
+        notes: ''
     });
 
     const [toggle, setToggle] = useState(false)
@@ -31,6 +32,13 @@ function NewWorkout() {
         console.log('adding exercise: ', exercise)
         setWorkout({
             ...workout, exercises: [...workout.exercises, exercise]
+        })
+        setExercise({
+            name: "",
+            sets: 0,
+            reps: 0,
+            weight: 0,
+            notes: ""
         })
     }
 
@@ -59,6 +67,7 @@ function NewWorkout() {
             console.log('Workout submitted: ', JSON.stringify(newWorkout))
       
             alert("Workout submitted") // This isn't working right. 
+
           } catch (err) {
             console.error('Submit failed: ', err)
           }
