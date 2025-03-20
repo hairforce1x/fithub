@@ -1,30 +1,40 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
+import WorkoutList from "./WorkoutList";
 
 
 
 function DisplayRoutine() {
     let params = useParams();
-    const [routine, setRoutine] = useState();
+
+    const [workouts, setWorkouts] = useState([])
+    const [routines, setRoutines] = useState([])
 
     useEffect(() => {
-        const fetchRoutine = async () => {
-            try {
-                const response = await fetch(`http://localhost:8080/api/routines/id/${params.id}`)
-                const data = await response.json();
-                setRoutine(data);
-            } catch (err) {
-                console.error('Error fetching routine', err)
-            }
-        };
-        fetchRoutine()
-     }, []);
+        Promise.all([
+            fetch('http://localhost:8080/api/workouts/').then(res => res.json()),
+            fetch(`http://localhost:8080/api/routines/id/${params}`).then(res => res.json())
+        ]).then(
+            links => {
+                const workoutResponse = links[0];
+                const routineResponse = links[1];
 
-return (
-    <>
-        <h2>Hello World{routine.name}</h2>
-    </>
-);
+                setWorkouts(workoutResponse);
+                setRoutines(routineResponse);
+            }
+        )
+    }, [])
+
+    useEffect(() => {
+        console.log(routines)
+    }, [routines]);
+
+    return (
+        <>
+            <h2>{routines.name}</h2>
+            {/* <WorkoutList /> */}
+        </>
+    );
 }
 
 export default DisplayRoutine;

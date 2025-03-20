@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function RoutineList({ routines }) {
     return (
         <>
-        Hello World
+        <div>
         {routines.length === 0 ? (
             <p>No routines available</p>
         ) : (
@@ -14,7 +14,8 @@ function RoutineList({ routines }) {
                         </h3>
                 </div>
             ))
-        )}
+        )}</div>
+
         </>
     )
 }

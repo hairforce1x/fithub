@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewRoutine = () => {
+const NewRoutine = ({ routines }) => {
     const [routine, setRoutine] = useState('')
 
     const handleInputChange = (e) => {
@@ -17,6 +17,7 @@ const NewRoutine = () => {
                 },
                 body: JSON.stringify({
                     name: routine,
+                    workouts: [{workoutId: "67d320b45ea97ca791b320de"}]
                 })
             })
             if (!response.ok) {
@@ -40,6 +41,9 @@ const NewRoutine = () => {
             <form onSubmit={handleSubmit}>
                 <label>Routine Name</label>
                 <input type='text' name='name' placeholder='Ex: Starting Strength' value={routine} onChange={handleInputChange} required />
+                
+                
+
                 <button>Submit</button>
             </form>
         </>

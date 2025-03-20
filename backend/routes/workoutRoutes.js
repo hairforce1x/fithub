@@ -87,16 +87,16 @@ router.get('/routines/id/:id', async (req, res) => {
     try {
         const routineId = req.params.id;
 
-        const routine = await Routine.findById(routineId);
+        const routine = await Routine.findById(routineId)
 
         if (!routine) {
-            return res.status(404).json({ error: 'Routine not found' })
+            return res.status(404).json({ error: 'Routine not found' });
         }
 
         res.status(200).json(routine);
     } catch (err) {
         console.error('Error fetching workout', err);
-        res.status(500).json({ error: 'Something went wrong fetching.' })
+        res.status(500).json({ error: 'Something went wrong fetching.' });
     }
 })
 
@@ -109,13 +109,13 @@ router.get('/workouts/id/:id', async (req, res) => {
         const workout = await Workout.findById(workoutId);
 
         if (!workout) {
-            return res.status(404).json({ error: 'Workout not found' })
+            return res.status(404).json({ error: 'Workout not found' });
         }
 
         res.status(200).json(workout);
     } catch (err) {
         console.error('Error fetching workout', err);
-        res.status(500).json({ error: 'Something went wrong fetching.' })
+        res.status(500).json({ error: 'Something went wrong fetching.' });
     }
 })
 
@@ -129,12 +129,12 @@ router.put('/workouts/id/:id', async (req, res) => {
         const updatedWorkout = await Workout.findByIdAndUpdate(workoutId, updateData, { new: true });
 
         if (!updatedWorkout) {
-            return res.status(404).json({error: 'Workout not found'})
+            return res.status(404).json({error: 'Workout not found'});
         }
 
         res.status(200).json({message: 'Workout update successful', workout: updatedWorkout})
     } catch (err) {
-        console.error('Update Error:', err)
+        console.error('Update Error:', err);
         res.status(500).json({ error: 'Could not update'})
     }
 })
@@ -145,16 +145,16 @@ router.delete('/workouts/id/:id', async (req, res) => {
     try {
         const workoutId = req.params.id;
 
-        const deletedWorkout = await Workout.findByIdAndDelete(workoutId)
+        const deletedWorkout = await Workout.findByIdAndDelete(workoutId);
 
         if (!deletedWorkout) {
-            return res.status(404).json({ error: 'Workout not found' })
+            return res.status(404).json({ error: 'Workout not found' });
         }
 
-        res.status(200).json('Workout deleted')
+        res.status(200).json('Workout deleted');
     } catch (err) {
-        console.error('Error deleting workout:', err)
-        res.status(500).json({ error: 'Something went wrong deleting.' })
+        console.error('Error deleting workout:', err);
+        res.status(500).json({ error: 'Something went wrong deleting.' });
     }
 })
 

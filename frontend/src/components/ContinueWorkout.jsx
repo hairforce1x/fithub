@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 
 
 
-function EditWorkout() {
+function ContinueWorkout() {
   const [workout, setWorkout] = useState(null)
   let params = useParams()
   const [routines, setRoutines] = useState([])
@@ -55,10 +55,9 @@ function EditWorkout() {
       const updatedWorkout = {
         ...workout,
         exercises: workout.exercises,
-        routine: selectedRoutine
       }
-      const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`, {
-        method: 'PUT',
+      const response = await fetch(`http://localhost:8080/api/workouts/`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -70,7 +69,7 @@ function EditWorkout() {
 
       console.log('body object: ', JSON.stringify(updatedWorkout))
 
-      alert("Workout updated") // This isn't working right. 
+      alert("Workout added") // This isn't working right. 
     } catch (err) {
       console.error('Update failed: ', err)
     }
@@ -117,9 +116,9 @@ function EditWorkout() {
           </li>
         ))}
       </ul>
-      <button onClick={handleUpdate}>Update</button>
+      <button onClick={handleUpdate}>Finish Workout</button>
     </form>
   )
 }
 
-export default EditWorkout;
+export default ContinueWorkout;

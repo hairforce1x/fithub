@@ -7,17 +7,23 @@ import NewRoutine from './components/NewRoutine.jsx';
 import DisplayRoutine from './components/DisplayRoutine.jsx';
 import './index.css'
 import App from './App.jsx'
+import WorkoutList from './components/WorkoutList.jsx';
+import ContinueWorkout from './components/ContinueWorkout.jsx';
+import App1 from './App1.jsx';
+import ListWorkouts from './components/ListWorkouts.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router>
+    <App />
+    {/* <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/workouts/:id" element={<EditWorkout />} />
+        <Route path="/workouts/" element={<ListWorkouts />} />
+        <Route path="/workouts/:id" element={<ContinueWorkout />} />
         <Route path="/workouts/add" element={<NewWorkout />} />
         <Route path="/routines/add" element={<NewRoutine />} />
         <Route path="/routines/:id" element={<DisplayRoutine />} />
       </Routes>
-    </Router>
+    </Router> */}
   </StrictMode>,
 )
