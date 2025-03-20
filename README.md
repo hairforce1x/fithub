@@ -2,9 +2,9 @@
 
  Welcome to fithub. A no frills workout tracker. Add exercises to a workout and save the workout to the database. Edit that workout after the fact, or copy it to keep a record of the dates of your workouts and any progress.
  
- I got most of the basic functionality I wanted implemented. Still tons to do to make it better. Forms need validation, better state management, better design, and users/authentication would be my next steps. I got stuck for way too long trying to make routines. Add workouts to a routine and save the routine. However I hadn't planned the data structure ahead of time so trying to refactor it proved to be difficult.
+ I got most of the basic functionality I wanted implemented. Still tons to do to make it better. Forms need validation, better state management, better or any ui design, and users/authentication would be my next steps. I got stuck for way too long trying to make routines, add workouts to a routine and save the routine. However I hadn't planned the data structure ahead of time so trying to refactor it proved to be difficult.
 
- My big takeaway is that having a plan and sticking to it is important. It's easy to start doing too much. Also paralasis by analysis is real. It was very easy to spend a long time researching a topic only tangentially related to the task at hand. 
+
 
  
  # Requirements

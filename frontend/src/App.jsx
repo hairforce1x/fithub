@@ -46,7 +46,7 @@ function Home() {
   return (
     <div className='container'>
       <h1>Top Workouts</h1>
-      <div className='top-links'>
+      <div className='top-links, border-top'>
         <Link to='/workouts/67dbe24cfe425d72daccb883'>Workout A</Link><br />
         <Link to='/workouts/67d320b45ea97ca791b320de'>Workout B</Link>
       </div>
