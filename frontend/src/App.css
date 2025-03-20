@@ -26,6 +26,11 @@
     list-style: none;
   }
   
+  .logo>a{
+    color:#fff;
+    text-decoration: none;
+  }
+
   .App .navbar .nav-links>a{
     color: #fff;
     text-decoration: none;

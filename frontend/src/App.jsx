@@ -7,6 +7,8 @@ import NewRoutine from './components/NewRoutine'
 import ListWorkouts from './components/ListWorkouts'
 import Nav from './components/Nav'
 import EditWorkout from './components/EditWorkout';
+import CopyWorkout from './components/CopyWorkout';
+import NewWorkout from './components/NewWorkout';
 
 
 
@@ -35,13 +37,22 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" Component={Home} />
-          <Route path="/workouts/" element={<ListWorkouts />} />
-          <Route path="/workouts/:id" element={<EditWorkout />} />
+          <Route path="/workouts/" element={<ListWorkouts workoutsArr={workouts} />} />
+          <Route path="/workouts/:id" element={<EditWorkout workoutsArr={workouts} />} />
+          <Route path="/workouts/add" element={<NewWorkout />} />
+          
         </Routes>
       </div>
     </Router>
   );
 }
+
+        // <Route path="/" element={<App />} />
+        // <Route path="/workouts/" element={<ListWorkouts />} />
+        // <Route path="/workouts/:id" element={<ContinueWorkout />} />
+        // <Route path="/workouts/add" element={<NewWorkout />} />
+        // <Route path="/routines/add" element={<NewRoutine />} />
+        // <Route path="/routines/:id" element={<DisplayRoutine />} />
 
 function Home(){
   return <h1>Hello World</h1>

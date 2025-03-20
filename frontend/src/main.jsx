@@ -8,7 +8,7 @@ import DisplayRoutine from './components/DisplayRoutine.jsx';
 import './index.css'
 import App from './App.jsx'
 import WorkoutList from './components/WorkoutList.jsx';
-import ContinueWorkout from './components/ContinueWorkout.jsx';
+import ContinueWorkout from './components/CopyWorkout.jsx';
 import App1 from './App1.jsx';
 import ListWorkouts from './components/ListWorkouts.jsx';
 

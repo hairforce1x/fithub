@@ -4,36 +4,16 @@ import { useState, useEffect } from "react"
 
 
 
-function EditWorkout() {
-  const [workout, setWorkout] = useState(null)
+function EditWorkout({workoutsArr}) {
+  const [workout, setWorkout] = useState()
   let params = useParams()
-  const [routines, setRoutines] = useState([])
-  const [selectedRoutine, setSelectedRoutine] = useState('')
 
-  useEffect(() => {
-    console.log(workout)
-  }, [workout])
-
-  useEffect(() => {
-    const fetchRoutines = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/routines');
-        const data = await response.json();
-        setRoutines(data);
-      } catch (err) {
-        console.error('Error fetching routines:', err);
-      }
-    };
-    fetchRoutines();
-  }, []);
-  
   useEffect(() => {
     const fetchWorkout = async () => {
       try {
         const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`)
         const data = await response.json()
         setWorkout(data)
-        setSelectedRoutine(data.routine ? data.routine._id : '')
       } catch (err) {
         console.error('Error fetching workout:', err)
       }
@@ -50,12 +30,39 @@ function EditWorkout() {
     })
   }
 
-  const handleUpdate = async () => {
+  const handleCopy = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      if (!workout) return;
+      const { _id, __v, ...workoutData } = workout;
+
+
+      const response = await fetch("http://localhost:8080/api/workouts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(workoutData),
+      });
+
+      if (response.ok) {
+        const newWorkout = await response.json();
+        console.log('copied successfully', newWorkout)
+      } else {
+        console.error('copy failed before catch')
+      }
+    } catch (err) {
+      console.error('Copy failed', err)
+    }
+
+  }
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
     try {
       const updatedWorkout = {
         ...workout,
         exercises: workout.exercises,
-        routine: selectedRoutine
       }
       const response = await fetch(`http://localhost:8080/api/workouts/id/${params.id}`, {
         method: 'PUT',
@@ -64,13 +71,12 @@ function EditWorkout() {
         },
         body: JSON.stringify(updatedWorkout)
       })
-      if (!response.ok) {
-        throw new Error('Update failed');
+      if (response.ok) {
+        const newWorkout = await response.json();
+        console.log('updated successfully', newWorkout)
+      } else {
+        console.error('update failed before catch')
       }
-
-      console.log('body object: ', JSON.stringify(updatedWorkout))
-
-      alert("Workout updated") // This isn't working right. 
     } catch (err) {
       console.error('Update failed: ', err)
     }
@@ -117,7 +123,7 @@ function EditWorkout() {
           </li>
         ))}
       </ul>
-      <button onClick={handleUpdate}>Update</button>
+      <button onClick={handleUpdate}>Update Workout</button><button onClick={handleCopy}>Copy Workout</button>
     </form>
   )
 }

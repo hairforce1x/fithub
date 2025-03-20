@@ -94,15 +94,7 @@ function NewWorkout() {
         <>
             <form onSubmit={handleSubmit}>
                 <h2>Add new workout</h2>
-                <label>Select routine:</label>
-                <select value={selectedRoutine} onChange={(e) => setSelectedRoutine(e.target.value)} required>
-                    <option value="">Select Routine</option>
-                    {routines.map((routine) => (
-                        <option key={routine._id} value={routine._id}>
-                            {routine.name}
-                        </option>
-                    ))}
-                </select><br />
+
                 <label>Workout Name:</label>
                 <input type='text' name='name' placeholder='Ex: Shoulder Day' value={workout.name} onChange={handleWorkoutChange} required /><br />
                 <label>Exercise Name:</label>
