@@ -13,25 +13,8 @@ function NewWorkout() {
         weight: 0,
         notes: ''
     });
-    const [routines, setRoutines] = useState([]);
+
     const [selectedRoutine, setSelectedRoutine] = useState('')
-
-    useEffect(() => {
-        const fetchRoutines = async () => {
-            try {
-                const response = await fetch('http://localhost:8080/api/routines');
-                const data = await response.json();
-                setRoutines(data);
-            } catch (err) {
-                console.error('Error fetching routines:', err);
-            }
-        };
-        fetchRoutines();
-    }, []);
-
-    useEffect(() => {
-        console.log(routines)
-    }, [routines])
 
     const handleWorkoutChange = ((e) => {
         setWorkout({ ...workout, [e.target.name]: e.target.value })
@@ -43,7 +26,6 @@ function NewWorkout() {
 
     // today I learned preventDefault not required because of type='button'
     const addExercise = (e) => {
-        console.log('adding exercise: ', exercise)
         setWorkout({
             ...workout, exercises: [...workout.exercises, exercise],
         })
@@ -57,9 +39,9 @@ function NewWorkout() {
     }
 
     // Learned useEffect is good for debugging
-    useEffect(() => {
-        console.log(workout);
-    }, [workout]);
+    // useEffect(() => {
+    //     console.log(workout);
+    // }, [workout]);
 
     const handleSubmit = async (e) => {
         e.preventDefault() // spent longer than I would care to admit figuring out that I needed preventDefault here. Rookie mistake.
@@ -81,7 +63,6 @@ function NewWorkout() {
             }
 
             const newWorkout = await response.json();
-            console.log('Workout submitted: ', JSON.stringify(newWorkout))
 
             alert("Workout submitted") // This isn't working right. 
 

@@ -12,7 +12,7 @@ import Nav from "./Nav";
                         {workoutsArr.map((workout) => (
                             <div key={workout._id}>
                                 <h3>
-                                    <Link to={`/workouts/${workout._id}`}>{workout.name}- {new Date(workout.date).toLocaleDateString()}</Link> {/* Learned that a Route must be defined before <Link> will work */}
+                                    <Link to={`/workouts/${workout._id}`}>{workout.name}- {new Date(workout.date).toLocaleDateString()}</Link>
                                 </h3>
                             </div>
                         ))}

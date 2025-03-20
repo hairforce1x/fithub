@@ -4,8 +4,8 @@ import { useState, useEffect } from "react"
 
 
 
-function EditWorkout({workoutsArr}) {
-  const [workout, setWorkout] = useState()
+function EditWorkout() {
+  const [workout, setWorkout] = useState(null)
   let params = useParams()
 
   useEffect(() => {
@@ -47,7 +47,6 @@ function EditWorkout({workoutsArr}) {
 
       if (response.ok) {
         const newWorkout = await response.json();
-        console.log('copied successfully', newWorkout)
       } else {
         console.error('copy failed before catch')
       }
@@ -73,7 +72,6 @@ function EditWorkout({workoutsArr}) {
       })
       if (response.ok) {
         const newWorkout = await response.json();
-        console.log('updated successfully', newWorkout)
       } else {
         console.error('update failed before catch')
       }

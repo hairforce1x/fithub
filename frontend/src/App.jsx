@@ -1,34 +1,36 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import './App.css'
-import RoutineList from './components/RoutineList'
-import WorkoutList from './components/WorkoutList'
-import NewRoutine from './components/NewRoutine'
 import ListWorkouts from './components/ListWorkouts'
 import Nav from './components/Nav'
 import EditWorkout from './components/EditWorkout';
-import CopyWorkout from './components/CopyWorkout';
 import NewWorkout from './components/NewWorkout';
+import './App.css'
+import Dedication from './components/Dedication';
 
 
 
 function App() {
   const [workouts, setWorkouts] = useState([])
-  const [routines, setRoutines] = useState([])
 
   useEffect(() => {
-    Promise.all([
-      fetch('http://localhost:8080/api/workouts/').then(res => res.json()),
-      fetch('http://localhost:8080/api/routines/').then(res => res.json())
-    ]).then(
-      links => {
-        const workoutResponse = links[0];
-        const routineResponse = links[1];
+    try {
+      const fetchWorkouts = async () => {
+        const response = await fetch('http://localhost:8080/api/workouts');
+        const data = await response.json();
+        setWorkouts(data)
+      } 
+    } catch(err){
+      console.error(err)
+    }
 
-        setWorkouts(workoutResponse);
-        setRoutines(routineResponse);
-      }
-    )
+    // Promise.all([
+    //   fetch('http://localhost:8080/api/workouts/').then(res => res.json()),
+    // ]).then(
+    //   links => {
+    //     const workoutResponse = links[0];
+    //     setWorkouts(workoutResponse);
+    //   }
+    // )
   }, [])
 
   return (
@@ -38,35 +40,17 @@ function App() {
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/workouts/" element={<ListWorkouts workoutsArr={workouts} />} />
-          <Route path="/workouts/:id" element={<EditWorkout workoutsArr={workouts} />} />
+          <Route path="/workouts/:id" element={<EditWorkout />} />
           <Route path="/workouts/add" element={<NewWorkout />} />
-          
+          <Route path="/dedication" element={<Dedication />} />
         </Routes>
       </div>
     </Router>
   );
 }
 
-        // <Route path="/" element={<App />} />
-        // <Route path="/workouts/" element={<ListWorkouts />} />
-        // <Route path="/workouts/:id" element={<ContinueWorkout />} />
-        // <Route path="/workouts/add" element={<NewWorkout />} />
-        // <Route path="/routines/add" element={<NewRoutine />} />
-        // <Route path="/routines/:id" element={<DisplayRoutine />} />
-
 function Home(){
   return <h1>Hello World</h1>
 }
-
-{/* <Router>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/workouts/" element={<ListWorkouts />} />
-        <Route path="/workouts/:id" element={<ContinueWorkout />} />
-        <Route path="/workouts/add" element={<NewWorkout />} />
-        <Route path="/routines/add" element={<NewRoutine />} />
-        <Route path="/routines/:id" element={<DisplayRoutine />} />
-      </Routes>
-    </Router> */}
 
 export default App
