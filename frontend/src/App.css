@@ -1,8 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
   }
+
   .App {
     font-family: sans-serif;
     width: 100%;
@@ -16,7 +16,7 @@
     justify-content: space-around;
     align-items: center;
     color: #fff;
-    background: rgba(29, 161, 242, 1);
+    background-color:#2dba4e;
   }
   
   .App .navbar .nav-links {
@@ -26,13 +26,36 @@
     list-style: none;
   }
   
-  .logo>a{
+  .App .logo>a{
     color:#fff;
     text-decoration: none;
   }
 
+  .App .top-links>a {
+    text-decoration: none;
+    color: black;
+  }
   .App .navbar .nav-links>a{
     color: #fff;
     text-decoration: none;
   }
   
+  input {
+    border: none;
+    text-align: center;
+    font-size: larger;
+    font-weight: bolder;
+    max-width: 15%;
+  }
+  button {
+    text-align: center;
+    color: #fff;
+    background-color:#2dba4e;
+    border: solid, 1px, #fff;
+    padding: 30px 60px;
+    margin: 0px 50px;
+  }
+
+  .list-container {
+    display: flex;
+  }

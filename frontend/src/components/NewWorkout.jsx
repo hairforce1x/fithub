@@ -47,7 +47,7 @@ function NewWorkout() {
         e.preventDefault() // spent longer than I would care to admit figuring out that I needed preventDefault here. Rookie mistake.
         console.log('submit pressed')
         const workoutWithRoutine = {
-            ...workout, routine: selectedRoutine,
+            ...workout
         }
         try {
             const response = await fetch('http://localhost:8080/api/workouts/', {
@@ -57,12 +57,12 @@ function NewWorkout() {
                 },
                 body: JSON.stringify(workoutWithRoutine)
             })
-
-            if (!response.ok) {
-                throw new Error('Submit failed');
-            }
-
             const newWorkout = await response.json();
+            if (response.ok) {
+                console.log('added successfully')
+            } else {
+                console.log('add not successful')
+            }
 
             alert("Workout submitted") // This isn't working right. 
 

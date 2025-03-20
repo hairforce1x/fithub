@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router";
 import ListWorkouts from './components/ListWorkouts'
 import Nav from './components/Nav'
 import EditWorkout from './components/EditWorkout';
@@ -7,32 +7,25 @@ import NewWorkout from './components/NewWorkout';
 import './App.css'
 import Dedication from './components/Dedication';
 
+const handleCopy = () => {
 
+}
 
 function App() {
   const [workouts, setWorkouts] = useState([])
-
   useEffect(() => {
-    try {
-      const fetchWorkouts = async () => {
-        const response = await fetch('http://localhost:8080/api/workouts');
-        const data = await response.json();
+    const fetchWorkouts = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/workouts/')
+        const data = await response.json()
         setWorkouts(data)
-      } 
-    } catch(err){
-      console.error(err)
+      } catch (err) {
+        console.error('Error fetching workouts:', err)
+      }
     }
-
-    // Promise.all([
-    //   fetch('http://localhost:8080/api/workouts/').then(res => res.json()),
-    // ]).then(
-    //   links => {
-    //     const workoutResponse = links[0];
-    //     setWorkouts(workoutResponse);
-    //   }
-    // )
+    fetchWorkouts()
   }, [])
-
+  
   return (
     <Router>
       <div className="App">
@@ -49,8 +42,16 @@ function App() {
   );
 }
 
-function Home(){
-  return <h1>Hello World</h1>
+function Home() {
+  return (
+    <div>
+      <h1>Top Workouts</h1>
+      <div className='top-links'>
+      <Link to='/workouts/67dbe24cfe425d72daccb883'>Workout A</Link><br />
+      <Link to='/workouts/67d320b45ea97ca791b320de'>Workout B</Link>
+      </div>
+    </div>
+)
 }
 
 export default App

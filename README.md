@@ -1,98 +1,11 @@
 # fithub
 
-CP 325.9: 
- Capstone Completion
- Version 1.0, 08/14/23
- Introduction
- This document will remind you of the requirements of the course Capstone Project (CP), and give you final tasks to work towards for its completion.
- Capstone Objective
- Create a full-stack web application using MongoDB, Express, React, and Node (MERN).
- Timeline
- As the course progressed, you were given incremental assignments that challenged you to integrate the content that you have learned into your capstone project, pushing it closer to completion over time.
- # CAPSTONE - [subtitle]
- CP 325.9: Capstone Completion
+ Welcome to fithub. A no frills workout tracker. Add exercises to a workout and save the workout to the database. Edit that workout after the fact, or copy it to keep a record of the dates of your workouts and any progress.
  
- ## Introduction
- This document will remind you of the requirements of the course **Capstone Project (CP)** and give you final tasks to work towards for its completion.
- 
- ## Capstone Objective
- Create a full-stack web application using **MongoDB, Express, React, and Node (MERN).**
- 
- ## Timeline
- As the course progressed, you were given incremental assignments that challenged you to integrate the content you have learned into your capstone project, pushing it closer to completion over time.
- 
- At each stage of your project, you have witnessed your own growth through the application’s progress. Hopefully, both you and your application have embraced change, persevered through the struggles, and done some try/catching when there was an exception to be handled.
- Now that you have reached the final days of the course, there will be eight days of dedicated project time for final tasks. You have made it to the end of the race, now it is time to cross the finish line!
- The complete application is due by 11:59pm on submission day, following the class time zone. 
- Submission
- When your project is finally complete, submit the link to your completed assessment using the Start Assignment button on the assignment page in Canvas.
- 
- Now that you have reached the final days of the course, there will be eight days of dedicated project time for final tasks. You have made it to the end of the race—now it is time to cross the finish line!
- 
- The complete application is due by **11:59pm on submission day, following the class time zone.**
- 
- ## Submission
- When your project is finally complete, submit the link to your completed assessment using the **Start Assignment** button on the assignment page in Canvas.
- 
- Your submission should include:
- A GitHub link to the repository for your completed project.
- You will also be given the opportunity to present your project to guests, instructors, and/or a Talent Advocate Manager (not the class) upon completion. Lean into this opportunity to become accustomed with speaking about your work, both from a technical and non-technical perspective.
- Your presentation should include:
- A demonstration of the application.
- An overview of the challenges you endured, and how you handled them.
- A short question-and-answer period.
- - A GitHub link to the repository for your completed project.
- 
- You will also be given the opportunity to present your project to guests, instructors, and/or a Talent Advocate Manager (not the class) upon completion. Lean into this opportunity to become accustomed to speaking about your work, both from a technical and non-technical perspective.
- 
- ### Your presentation should include:
- 1. A demonstration of the application.
- 2. An overview of the challenges you endured, and how you handled them.
- 3. A short question-and-answer period.
- 
- Your instructor will schedule practice presentations throughout the development phase.
- Instructions
- This final assignment is a reminder to double-check everything you have done so far, and finish any remaining tasks over the next eight days. Be sure to reference the requirements outlined below to ensure your project meets the technical criteria outlined.
- 
- ## Instructions
- This final assignment is a reminder to double-check everything you have done so far and finish any remaining tasks over the next eight days. Be sure to reference the requirements outlined below to ensure your project meets the technical criteria outlined.
- 
- Your project vision and its implementation likely changed substantially from the planning phase many weeks ago. Check in again with your instructor to make sure that you are on pace for success by the end of this final project phase.
- Finishing Up
- 
- ## Finishing Up
- Reference your original project plan and any notes you have made for yourself since then. Ensure that you have time to complete all of the tasks you outlined for yourself. Prioritize well, and if you cannot finish everything, decide what is most important.
- 
- As you finish building your application, ask yourself the following questions:
- Did you deliver a project that met all of the technical requirements?
- Given what the class has covered, did you build something reasonably complex?
- Did you add a personal touch or a creative element into your project submission?
- Did you deliver something of value to the end-user (not just a login button and an index page)?
- Did you follow the code style guidance and exercise best practices?
- Did you provide an appropriate level of comments?
- Did you try to deploy your application to a public URL as a personal stretch goal?
- Lastly, congratulations! You have come incredibly far in a very short period of time. Be proud.
- Requirements and Rubrics
- - Did you deliver a project that met all of the technical requirements?
- - Given what the class has covered, did you build something reasonably complex?
- - Did you add a personal touch or a creative element into your project submission?
- - Did you deliver something of value to the end-user (not just a login button and an index page)?
- - Did you follow the code style guidance and exercise best practices?
- - Did you provide an appropriate level of comments?
- - Did you try to deploy your application to a public URL as a personal stretch goal?
- 
- Lastly, **congratulations!** You have come incredibly far in a very short period of time. Be proud.
- 
- ---
- 
- ## Requirements and Rubrics
- These requirements are intended to give you as much creative freedom as possible while still showcasing the skills gained during your technical learning journey.
- Requirements
- Your project folder should be named as follows, for submission:
- LastName_FirstName_ProjectName_Capstone
- The following section is NOT included in the requirements for this project. Completing this section is NOT required. This section will NOT negatively impact your grade if left unfinished.
- This section is intended for learners looking to go the extra mile by showcasing additional skills such as project management, and optional technologies like TypeScript.
- You must complete ALL other requirements to receive credit for this section; however, this extra credit will not be included if you have already received the maximum 100% grade. The extra credit can only offset points lost elsewhere.
+ I got most of the basic functionality I wanted implemented. Still tons to do to make it better. Forms need validation, better state management, better design, and users/authentication would be my next steps. I got stuck for way too long trying to make routines. Add workouts to a routine and save the routine. However I hadn't planned the data structure ahead of time so trying to refactor it proved to be difficult.
+
+ My big takeaway is that having a plan and sticking to it is important. It's easy to start doing too much. Also paralasis by analysis is real. It was very easy to spend a long time researching a topic only tangentially related to the task at hand. 
+
  
  # Requirements
  Your project folder should be named as follows for submission:
@@ -107,8 +20,8 @@ CP 325.9:
  - [x] Project contains an appropriate level of comments.
  - [x] Project is pushed to GitHub, and contains a README file that documents the project, including an overall description of the project.
  - [x] Standard naming conventions are used throughout the project.
- - [ ] Ensure that the program runs without errors (comment out things that do not work, and explain your blockers - you can still receive partial credit).
- - [ ] Level of effort displayed in creativity, presentation, and user experience.
+ - [x] Ensure that the program runs without errors (comment out things that do not work, and explain your blockers - you can still receive partial credit).
+ - [x] Level of effort displayed in creativity, presentation, and user experience.
  
  ---
  
@@ -140,7 +53,7 @@ CP 325.9:
  ## (35%) Front-End Development
  
  - [x] Use React to create the application’s front-end. **(10%)**
- - [ ] Use CSS to style the application. **(5%)**
+ - [x] Use CSS to style the application. **(5%)**
  - [x] Create at least four different views or pages for the application. **(5%)**
  - [x] Create some form of navigation that is included across the application’s pages, utilizing React Router for page rendering. **(5%)**
  - [x] Use React Hooks or Redux for application state management. **(5%)**

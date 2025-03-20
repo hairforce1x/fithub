@@ -5,7 +5,8 @@ import { useState, useEffect } from "react"
 
 
 function EditWorkout() {
-  const [workout, setWorkout] = useState(null)
+  const [workout, setWorkout] = useState(null);
+  const [stateChange, setStateChange] = useState();
   let params = useParams()
 
   useEffect(() => {
@@ -44,9 +45,10 @@ function EditWorkout() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(workoutData),
       });
-
+      const newWorkout = await response.json();
       if (response.ok) {
-        const newWorkout = await response.json();
+        setStateChange(!stateChange);
+        console.log('copy successful: ', newWorkout)
       } else {
         console.error('copy failed before catch')
       }
@@ -70,8 +72,11 @@ function EditWorkout() {
         },
         body: JSON.stringify(updatedWorkout)
       })
+
+      const newWorkout = await response.json();
+
       if (response.ok) {
-        const newWorkout = await response.json();
+        console.log('update successful')
       } else {
         console.error('update failed before catch')
       }
