@@ -1,29 +1,33 @@
 import { useState, useEffect } from 'react'
 
 import './App.css'
-import EditWorkout from './components/EditWorkout'
+import RoutineList from './components/RoutineList'
 import WorkoutList from './components/WorkoutList'
 
 
 
 function App() {
   const [workouts, setWorkouts] = useState([])
-  
+  const [routines, setRoutines] = useState([])
 
   useEffect(() => {
-    const fetchWorkouts = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/workouts/");
-        const data = await response.json();
-        setWorkouts(data);
-      } catch (err) {
-        console.error('Error fetching workouts:', err)
-      } 
-    }
-    fetchWorkouts()
+    Promise.all([
+      fetch('http://localhost:8080/api/workouts/').then(res => res.json()),
+      fetch('http://localhost:8080/api/routines/').then(res => res.json())
+    ]).then(
+      links => {
+        const workoutResponse = links[0];
+        const routineResponse = links[1];
+
+        setWorkouts(workoutResponse);
+        setRoutines(routineResponse);
+      }
+    )
   }, [])
+
   return (
     <div>
+      <RoutineList routines={routines} />
       <WorkoutList workouts={workouts} />
     </div>
   )

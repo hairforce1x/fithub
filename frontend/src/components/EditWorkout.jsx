@@ -11,6 +11,10 @@ function EditWorkout() {
   const [selectedRoutine, setSelectedRoutine] = useState('')
 
   useEffect(() => {
+    console.log(workout)
+  }, [workout])
+
+  useEffect(() => {
     const fetchRoutines = async () => {
       try {
         const response = await fetch('http://localhost:8080/api/routines');
@@ -64,7 +68,6 @@ function EditWorkout() {
         throw new Error('Update failed');
       }
 
-      // const updatedWorkout = await response.json();
       console.log('body object: ', JSON.stringify(updatedWorkout))
 
       alert("Workout updated") // This isn't working right. 
@@ -82,6 +85,7 @@ function EditWorkout() {
 
   return (
     <form>
+      
       <label>Select routine:</label>
       <select value={selectedRoutine} onChange={(e) => setSelectedRoutine(e.target.value)} required>
         <option value="">Select Routine</option>
