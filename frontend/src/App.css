@@ -34,28 +34,43 @@
   .App .top-links>a {
     text-decoration: none;
     color: black;
+    font-size: larger;
+    /* border: 1px, solid, black; */
   }
   .App .navbar .nav-links>a{
     color: #fff;
     text-decoration: none;
   }
   
-  input {
+  ul {
+    
+  }
+  /* input {
     border: none;
     text-align: center;
     font-size: larger;
     font-weight: bolder;
-    max-width: 15%;
-  }
+    min-width: 25%;
+  } */
   button {
     text-align: center;
     color: #fff;
     background-color:#2dba4e;
     border: solid, 1px, #fff;
     padding: 30px 60px;
-    margin: 0px 50px;
+    margin: 50px 0px;
   }
 
   .list-container {
+    margin-top: 30px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }

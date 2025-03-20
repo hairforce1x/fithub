@@ -93,6 +93,7 @@ function EditWorkout() {
   }
 
   return (
+    <div className="container">
     <form>
       <h2>{workout.name}</h2>
       <ul>
@@ -128,6 +129,7 @@ function EditWorkout() {
       </ul>
       <button onClick={handleUpdate}>Update Workout</button><button onClick={handleCopy}>Copy Workout</button>
     </form>
+    </div>
   )
 }
 

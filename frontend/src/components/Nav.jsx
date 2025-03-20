@@ -8,7 +8,7 @@ export default function Nav(){
            <ul className="nav-links">
               <Link to="/workouts/add">New Workout</Link>
               <Link to="/workouts">Past Workouts</Link>
-              <Link to="/dedication">About</Link>
+              <Link to="/dedication">Dedication</Link>
            </ul>
         </div>
   );

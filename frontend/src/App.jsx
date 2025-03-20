@@ -25,7 +25,7 @@ function App() {
     }
     fetchWorkouts()
   }, [])
-  
+
   return (
     <Router>
       <div className="App">
@@ -44,14 +44,14 @@ function App() {
 
 function Home() {
   return (
-    <div>
+    <div className='container'>
       <h1>Top Workouts</h1>
       <div className='top-links'>
-      <Link to='/workouts/67dbe24cfe425d72daccb883'>Workout A</Link><br />
-      <Link to='/workouts/67d320b45ea97ca791b320de'>Workout B</Link>
+        <Link to='/workouts/67dbe24cfe425d72daccb883'>Workout A</Link><br />
+        <Link to='/workouts/67d320b45ea97ca791b320de'>Workout B</Link>
       </div>
     </div>
-)
+  )
 }
 
 export default App

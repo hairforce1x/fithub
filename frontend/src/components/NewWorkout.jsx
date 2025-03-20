@@ -72,7 +72,7 @@ function NewWorkout() {
     }
 
     return (
-        <>
+        <div className="container">
             <form onSubmit={handleSubmit}>
                 <h2>Add new workout</h2>
 
@@ -97,7 +97,7 @@ function NewWorkout() {
                 }
             </ul>
             <button onClick={handleSubmit}>Submit Workout</button>
-        </>
+        </div>
 
     );
 }
