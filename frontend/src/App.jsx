@@ -7,10 +7,6 @@ import NewWorkout from './components/NewWorkout';
 import './App.css'
 import Dedication from './components/Dedication';
 
-const handleCopy = () => {
-
-}
-
 function App() {
   const [workouts, setWorkouts] = useState([])
   useEffect(() => {

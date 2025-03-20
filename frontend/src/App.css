@@ -30,10 +30,10 @@
     color:#fff;
     text-decoration: none;
   }
-  .border-top {
+  /* .border-top {
     /* border-top: 1px solid black; */
     margin-top: 10px;
-  }
+  } */
   .App .top-links>a {
     text-decoration: none;
     color: black;
@@ -45,13 +45,12 @@
     text-decoration: none;
   }
   
-  /* input {
+  input {
     border: none;
     text-align: center;
-    font-size: larger;
     font-weight: bolder;
     min-width: 25%;
-  } */
+  }
   button {
     text-align: center;
     color: #fff;

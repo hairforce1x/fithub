@@ -2,7 +2,7 @@ function Dedication() {
     return ( 
         <>
         <div className="container">
-            <h2>Dedicated to my classmates</h2>
+            <h2>Dedicated to my classmates and instructors</h2>
             <br />
             <h3>So long and thanks for all the sandwiches.</h3>
             <br/>
